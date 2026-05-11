@@ -1,13 +1,17 @@
+<<<<<<< HEAD
 /**
  * Notification Model Definition
  * SDRS Gold Finance & Jewelry ERP System
  */
 
+=======
+>>>>>>> 80625032da0853259748299ae1b213d25b9ac9d0
 module.exports = (sequelize, DataTypes) => {
   const Notification = sequelize.define('Notification', {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
+<<<<<<< HEAD
       primaryKey: true,
     },
     customerId: {
@@ -39,6 +43,16 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     tableName: 'notifications',
     timestamps: true,
+=======
+      primaryKey: true
+    },
+    message: DataTypes.TEXT,
+    type: DataTypes.STRING,
+    isRead: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    }
+>>>>>>> 80625032da0853259748299ae1b213d25b9ac9d0
   });
 
   return Notification;

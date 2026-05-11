@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const Joi = require('joi');
 
 /**
@@ -23,3 +24,8 @@ const customerValidation = {
 };
 
 module.exports = customerValidation;
+=======
+exports.createCustomer = (req, res, next) => {
+  next();
+};
+>>>>>>> 80625032da0853259748299ae1b213d25b9ac9d0
