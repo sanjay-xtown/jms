@@ -34,7 +34,14 @@ module.exports = (err, req, res, next) => {
   logger.error(err.stack);
   
   const statusCode = err.statusCode || 500;
-  const message = err.message || 'Internal Server Error';
+  let message = err.message || 'Internal Server Error';
+
+  if (req.t) {
+    if (statusCode === 500) message = req.t('internalServer', { ns: 'error', defaultValue: message });
+    else if (statusCode === 401) message = req.t('unauthorized', { ns: 'error', defaultValue: message });
+    else if (statusCode === 403) message = req.t('forbidden', { ns: 'error', defaultValue: message });
+    else if (statusCode === 404) message = req.t('notFound', { ns: 'error', defaultValue: message });
+  }
   
   res.status(statusCode).json({
     success: false,

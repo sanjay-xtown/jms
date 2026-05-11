@@ -11,6 +11,8 @@ const dashboardRoutes = require('../modules/dashboard/dashboard.routes');
 const reportRoutes = require('../modules/reports/reports.routes');
 const chitFundRoutes = require('../modules/chitFund/chitFund.routes');
 const pdfRoutes = require('../modules/pdf/pdf.routes');
+const ledgerRoutes = require('../modules/ledger/ledger.routes');
+const userRoutes = require('../modules/users/users.routes');
 
 router.use('/auth', authRoutes);
 router.use('/gold-finance', goldFinanceRoutes);
@@ -23,5 +25,7 @@ router.use('/dashboard', dashboardRoutes);
 router.use('/reports', reportRoutes);
 router.use('/chit-fund', chitFundRoutes);
 router.use('/pdf', pdfRoutes);
+router.use('/ledger', ledgerRoutes);
+router.use('/users', userRoutes);
 
 module.exports = router;

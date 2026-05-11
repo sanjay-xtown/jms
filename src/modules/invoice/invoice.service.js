@@ -4,11 +4,12 @@ const generateInvoiceNumber = () => {
   return `INV-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 };
 
-const createInvoice = async (invoiceData) => {
+const createInvoice = async (invoiceData, transaction = null) => {
+  const options = transaction ? { transaction } : {};
   const invoice = await Invoice.create({
     ...invoiceData,
     invoiceNumber: generateInvoiceNumber()
-  });
+  }, options);
   return invoice;
 };
 

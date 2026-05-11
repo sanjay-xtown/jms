@@ -3,8 +3,10 @@ const router = express.Router();
 const authController = require('./auth.controller');
 const authMiddleware = require('../../shared/middleware/auth.middleware');
 
-router.post('/register', authController.register);
-router.post('/login', authController.login);
+const { validateRegister, validateLogin } = require('./auth.validation');
+
+router.post('/register', validateRegister, authController.register);
+router.post('/login', validateLogin, authController.login);
 
 // Protected Routes
 router.get('/profile', authMiddleware, authController.getProfile);

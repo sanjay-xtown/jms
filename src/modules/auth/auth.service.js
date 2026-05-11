@@ -3,7 +3,7 @@ const { hashPassword, comparePassword } = require('../../shared/utils/bcrypt');
 const { generateToken } = require('../../shared/utils/jwt');
 
 const registerUser = async (userData) => {
-  const { email, password } = userData;
+  const { firstName, lastName, email, password } = userData;
 
   // Check if user exists
   const existingUser = await User.findOne({ where: { email } });
@@ -14,10 +14,13 @@ const registerUser = async (userData) => {
   // Hash password
   const hashedPassword = await hashPassword(password);
 
-  // Create user
+  // Create user with explicit fields only
   const user = await User.create({
-    ...userData,
+    firstName,
+    lastName,
+    email,
     password: hashedPassword,
+    role: 'USER' // Default to USER for public registration
   });
 
   // Return user without password

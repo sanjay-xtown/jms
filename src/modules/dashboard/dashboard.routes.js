@@ -4,10 +4,14 @@ const dashboardController = require('./dashboard.controller');
 const authMiddleware = require('../../shared/middleware/auth.middleware');
 const authorizeRoles = require('../../shared/middleware/role.middleware');
 
+// All dashboard routes are protected
 router.use(authMiddleware);
+router.use(authorizeRoles('SUPER_ADMIN', 'ADMIN'));
 
-router.get('/admin', authorizeRoles('SUPER_ADMIN', 'ADMIN'), dashboardController.getAdminDashboard);
-router.get('/revenue', authorizeRoles('SUPER_ADMIN', 'ADMIN'), dashboardController.getRevenue);
-router.get('/overdue-loans', authorizeRoles('SUPER_ADMIN', 'ADMIN'), dashboardController.getOverdueLoans);
+// Dashboard Endpoints
+router.get('/summary', dashboardController.getSummary);
+router.get('/analytics', dashboardController.getAnalytics);
+router.get('/activity', dashboardController.getActivity);
+router.get('/charts', dashboardController.getCharts);
 
 module.exports = router;

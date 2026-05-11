@@ -12,6 +12,10 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+const i18next = require('./src/shared/utils/i18n');
+const middleware = require('i18next-http-middleware');
+app.use(middleware.handle(i18next));
+
 // API Routes
 app.use('/api', routes);
 
